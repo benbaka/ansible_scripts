@@ -4,6 +4,12 @@
   tasks:
     - name: ensure that the deployments folder is removed
       file: path=/home/vagrant/deployments state=absent
+
+
     - name: create deployments folder
       file: path=/home/vagrant/deployments state=directory
 
+
+    - file: src=files/{{ item.src }} dest=/home/vagrant/deployments/{{ item.dest }} state=link force=yes
+      with_items:
+        - { src: 'ini.conf', dest: 'ini.conf' }
