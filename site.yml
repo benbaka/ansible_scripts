@@ -1,0 +1,6 @@
+---
+- hosts: vagrantboxes
+  remote_user: vagrant
+  tasks:
+    - name: create deployments folder
+      file: path=/home/vagrant/deployments state=directory
