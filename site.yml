@@ -16,3 +16,10 @@
     - name: install cowsay
       sudo: yes
       apt: name=cowsay state=latest
+
+- hosts: vagrantboxes
+  remote_user: vagrant
+  tasks:
+    - name: install unzip
+      sudo: true
+      apt: name=unzip state=latest
