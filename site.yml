@@ -23,3 +23,15 @@
     - name: install unzip
       sudo: true
       apt: name=unzip state=latest
+
+- hosts: vagrantboxes
+  remote_user: vagrant
+  sudo: true
+  vars:
+    source_folder: files/requirements.txt
+    destination_folder: deployments/files
+
+  tasks:
+
+    - name: create files subfolder
+      file: path=/home/vagrant/{{destination_folder}} state=directory
