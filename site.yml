@@ -9,9 +9,9 @@
     - name: create deployments folder
       file: path=/home/vagrant/deployments state=directory
 
-    - name: update the repository
-      sudo: true
-      apt: update_cache=yes
+    #- name: update the repository
+    #  sudo: true
+    #  apt: update_cache=yes
 
     - name: install cowsay
       sudo: yes
@@ -28,10 +28,13 @@
   remote_user: vagrant
   sudo: true
   vars:
-    source_folder: files/requirements.txt
+    source_file: files/requirements.txt
     destination_folder: deployments/files
 
   tasks:
 
     - name: create files subfolder
       file: path=/home/vagrant/{{destination_folder}} state=directory
+
+    - name: copy the spec file to deployments folder
+      template: src={{ source_file }} dest=/home/vagrant/{{destination_folder}}/
