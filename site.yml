@@ -26,10 +26,13 @@
 
 - hosts: vagrantboxes
   remote_user: vagrant
-  sudo: true
+  sudo: false
   vars:
     source_file: files/requirements.txt
     destination_folder: deployments/files
+    name: ben
+    address: P. O. Box 4192, Accra
+    phone: +233245001853
 
   tasks:
 
@@ -37,4 +40,4 @@
       file: path=/home/vagrant/{{destination_folder}} state=directory
 
     - name: copy the spec file to deployments folder
-      template: src={{ source_file }} dest=/home/vagrant/{{destination_folder}}/
+      template: src={{ source_file }} dest=/home/vagrant/{{destination_folder}}/ owner=vagrant
